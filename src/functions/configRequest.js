@@ -1,6 +1,7 @@
 const UserAgent = require('user-agents');
 const splitProxy = require('split-proxy');
 const dayjs = require('dayjs')
+var HttpsProxyAgent = require('https-proxy-agent');
 
 // Internal function filtering proxy and proxylist
 const _setProxy = (proxy) => {
@@ -47,7 +48,9 @@ module.exports = {
     searchAndGetProduct: (options) => {
         const userAgent = new UserAgent();
 
+        var agent = new HttpsProxyAgent(options.proxy);
         const axiosConfig = {
+            httpsAgent: agent,
             headers: {
                 "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
                 "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
@@ -84,8 +87,6 @@ module.exports = {
                 "user-agent": userAgent.toString()
             },
         }
-
-        if (options?.proxy) axiosConfig.proxy = _setProxy(options?.proxy)
 
         return axiosConfig
     },

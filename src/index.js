@@ -1,4 +1,4 @@
-const axios = require('axios').default;
+const axios = require('iyaxios').default;
 const stockxConfig = require('./functions/configStockx');
 const configRequest = require('./functions/configRequest');
 const UserAgent = require('user-agents');

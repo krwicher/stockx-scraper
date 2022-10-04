@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require('iyaxios');
 const cheerio = require('cheerio');
 const config = require('./configRequest');
 
